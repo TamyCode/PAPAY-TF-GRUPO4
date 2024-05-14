@@ -1,0 +1,9 @@
+
+—
+java:S14883"[Immediately return this expression instead of assigning it to the temporary variable "dto".(ôİÌàJ$0397ff3e-6d88-4fdb-b812-705cf8b9dc8b
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$648b2ec7-08f4-45b5-adb5-ab7aaeb19362
+š
+java:S4144"YUpdate this method so that its implementation is not identical to "registrar" on line 24.(·µœøÿÿÿÿJ$861db4f9-0da8-4fe9-8e4b-a22090a71581
+¶
+java:S6204*"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(œçÖßJ$b4c98e7f-cc18-4e1a-9843-a6cf10b074a4
