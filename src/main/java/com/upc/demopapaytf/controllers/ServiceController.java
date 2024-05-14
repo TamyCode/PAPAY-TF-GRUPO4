@@ -71,7 +71,7 @@ public class ServiceController {
         for(String[] columna:filaLista){
             ServicebyDateServiceDTO dto=new ServicebyDateServiceDTO();
             dto.setNameService(columna[0]);
-            dto.setDateService(LocalDate.ofEpochDay(Integer.parseInt(columna[1])));
+            dto.setDateService(LocalDate.parse(columna[1]));
             dto.setQuantityDateService(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }

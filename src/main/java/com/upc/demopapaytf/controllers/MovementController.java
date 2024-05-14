@@ -76,7 +76,7 @@ public class MovementController {
         for(String[] columna:filaLista){
             MovementbyDateDTO dto=new MovementbyDateDTO();
             dto.setMovementId(Integer.parseInt(columna[0]));
-            dto.setDateMovement(LocalDate.ofEpochDay(Integer.parseInt(columna[1])));
+            dto.setDateMovement(LocalDate.parse(columna[1]));
             dto.setQuantityMovement(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class VoucherDTO {
     private int idVoucher;
     private LocalDate dateVoucher;
-    private LocalDateTime hourVoucher;
+    private LocalDate hourVoucher;
     private int destinationAccountVoucher;
     private double amountVoucher;
     private int numberOperationVoucher;
@@ -27,11 +27,11 @@ public class VoucherDTO {
         this.dateVoucher = dateVoucher;
     }
 
-    public LocalDateTime getHourVoucher() {
+    public LocalDate getHourVoucher() {
         return hourVoucher;
     }
 
-    public void setHourVoucher(LocalDateTime hourVoucher) {
+    public void setHourVoucher(LocalDate hourVoucher) {
         this.hourVoucher = hourVoucher;
     }
 

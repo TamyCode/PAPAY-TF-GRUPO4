@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,14 +55,15 @@ public class NotificationController {
         return dto;
     }
 
-    @GetMapping("/cantidadusersciudad")
+    @GetMapping("/cantidadnotifidate")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<NotificationByDateDTO> CantidadUsusriosciudad(){
+    public List<NotificationByDateDTO> Cantidadnotificaciondate(){
         List<String[]> filaLista=nS.quantityNotificationByDateShip();
         List<NotificationByDateDTO> dtoLista=new ArrayList<>();
         for (String[] columna: filaLista){
             NotificationByDateDTO dto = new NotificationByDateDTO();
-            dto.setDateNotification(Integer.parseInt(columna[0]));
+
+            dto.setDateNotification(LocalDate.parse(columna[0]));
             dto.setQuantityNotification(Integer.parseInt(columna[1]));
             dtoLista.add(dto);
         }

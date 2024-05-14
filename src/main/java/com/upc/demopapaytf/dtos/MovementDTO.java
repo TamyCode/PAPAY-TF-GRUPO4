@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class MovementDTO {
     private int idMovement;
-    private Date dateMovement;
+    private LocalDate dateMovement;
     private String typeMovement;
     private double amountMovement;
     private AccountBanking bankingAccount;
@@ -20,11 +20,11 @@ public class MovementDTO {
         this.idMovement = idMovement;
     }
 
-    public Date getDateMovement() {
+    public LocalDate getDateMovement() {
         return dateMovement;
     }
 
-    public void setDateMovement(Date dateMovement) {
+    public void setDateMovement(LocalDate dateMovement) {
         this.dateMovement = dateMovement;
     }
 

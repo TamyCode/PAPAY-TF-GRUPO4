@@ -2,6 +2,7 @@ package com.upc.demopapaytf.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,7 +12,7 @@ public class Movement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int idMovement;
     @Column(name = "dateMovement",nullable = false)
-    private Date dateMovement;
+    private LocalDate dateMovement;
     @Column(name = "typeMovement",nullable = false,length = 40)
     private String typeMovement;
     @Column(name = "amountMovement",nullable = false)
@@ -24,7 +25,7 @@ public class Movement {
     public Movement() {
     }
 
-    public Movement(int idMovement, Date dateMovement, String typeMovement, double amountMovement, AccountBanking bankingAccount) {
+    public Movement(int idMovement, LocalDate dateMovement, String typeMovement, double amountMovement, AccountBanking bankingAccount) {
         this.idMovement = idMovement;
         this.dateMovement = dateMovement;
         this.typeMovement = typeMovement;
@@ -40,11 +41,11 @@ public class Movement {
         this.idMovement = idMovement;
     }
 
-    public Date getDateMovement() {
+    public LocalDate getDateMovement() {
         return dateMovement;
     }
 
-    public void setDateMovement(Date dateMovement) {
+    public void setDateMovement(LocalDate dateMovement) {
         this.dateMovement = dateMovement;
     }
 

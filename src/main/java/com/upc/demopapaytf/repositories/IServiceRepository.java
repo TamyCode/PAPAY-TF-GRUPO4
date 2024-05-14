@@ -12,9 +12,9 @@ public interface IServiceRepository extends JpaRepository<Services,Integer> {
     public List<Services> findByNameServiceAndDescriptionService(String name, String descrip);
 
     // Query03: Cantidad de servicios realizados en un determinada fecha
-    @Query(value= "Select name_service as NameService , time_service as DateService, count(time_service) as Quantity  \n" +
+    @Query(value= "Select name_service as NameService , date_service as DateService, count(date_service) as Quantity  \n" +
             "from services  \n" +
-            "group by name_service,time_service ",nativeQuery = true)
+            "group by name_service,date_service ",nativeQuery = true)
     public List<String[]> quantityServicebyDateService();
 
     @Query(value = "SELECT name_service as NameService,count(*)as CANTIDAD  \n" +

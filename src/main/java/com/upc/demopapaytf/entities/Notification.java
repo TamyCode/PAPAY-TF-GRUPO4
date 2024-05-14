@@ -2,6 +2,7 @@ package com.upc.demopapaytf.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -13,7 +14,7 @@ public class Notification {
     @Column(name = "messageNotification",nullable = false,length = 40)
     private String messageNotification;
     @Column(name = "dateShipNotification",nullable = false)
-    private Date dateShipNotification;
+    private LocalDate dateShipNotification;
     @Column(name = "stateNotification",nullable = false,length = 40)
     private String stateNotification;
 
@@ -24,7 +25,7 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(int idNotification, String messageNotification, Date dateShipNotification, String stateNotification, Movement movement) {
+    public Notification(int idNotification, String messageNotification, LocalDate dateShipNotification, String stateNotification, Movement movement) {
         this.idNotification = idNotification;
         this.messageNotification = messageNotification;
         this.dateShipNotification = dateShipNotification;
@@ -48,11 +49,11 @@ public class Notification {
         this.messageNotification = messageNotification;
     }
 
-    public Date getDateShipNotification() {
+    public LocalDate getDateShipNotification() {
         return dateShipNotification;
     }
 
-    public void setDateShipNotification(Date dateShipNotification) {
+    public void setDateShipNotification(LocalDate dateShipNotification) {
         this.dateShipNotification = dateShipNotification;
     }
 

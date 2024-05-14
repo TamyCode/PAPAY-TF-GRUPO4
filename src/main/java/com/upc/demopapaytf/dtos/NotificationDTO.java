@@ -2,12 +2,13 @@ package com.upc.demopapaytf.dtos;
 
 import com.upc.demopapaytf.entities.Movement;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class NotificationDTO {
     private int idNotification;
     private String messageNotification;
-    private Date dateShipNotification;
+    private LocalDate dateShipNotification;
     private String stateNotification;
     private Movement movement;
 
@@ -27,11 +28,11 @@ public class NotificationDTO {
         this.messageNotification = messageNotification;
     }
 
-    public Date getDateShipNotification() {
+    public LocalDate getDateShipNotification() {
         return dateShipNotification;
     }
 
-    public void setDateShipNotification(Date dateShipNotification) {
+    public void setDateShipNotification(LocalDate dateShipNotification) {
         this.dateShipNotification = dateShipNotification;
     }
 
