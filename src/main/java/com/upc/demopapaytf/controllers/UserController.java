@@ -33,7 +33,7 @@ public class UserController {
         u.setPassword(encodedPasswordEncoder);
         uS.insert(u);
     }
-    @PutMapping
+    @PutMapping("/modificar")
 
     public void modificar(@RequestBody UsersDTO user){
         ModelMapper m=new ModelMapper();

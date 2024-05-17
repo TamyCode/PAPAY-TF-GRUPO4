@@ -31,13 +31,7 @@ public class TypeServiceController {
         TypeService t=m.map(ts, TypeService.class);
         tS.insert(t);
     }
-    //    @GetMapping
-//    public List<TypeServiceDTO> lista(){
-//        return tS.list().stream().map(y->{
-//            ModelMapper m=new ModelMapper();
-//            return m.map(y,TypeServiceDTO.class);
-//        }).collect(Collectors.toList());
-//    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('PENSIONISTA')")
     public void eliminar(@PathVariable("id")Integer id){tS.delete(id);}

@@ -33,8 +33,8 @@ public class VoucherServiceImplement implements IVoucherService {
     }
 
     @Override
-    public List<String[]> findByAmountVoucherService() {
-        return vR.findByAmountVoucherService();
+    public List<String[]> quantityAmountVoucherService() {
+        return vR.quantityAmountVoucherService();
     }
 }
 

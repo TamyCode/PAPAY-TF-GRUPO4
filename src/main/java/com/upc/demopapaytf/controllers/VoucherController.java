@@ -1,5 +1,6 @@
 package com.upc.demopapaytf.controllers;
 
+import com.upc.demopapaytf.dtos.VoucherByServiceDTO;
 import com.upc.demopapaytf.dtos.VoucherDTO;
 import com.upc.demopapaytf.entities.Voucher;
 import com.upc.demopapaytf.servicesinterfaces.IVoucherService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,4 +51,18 @@ public class VoucherController {
         VoucherDTO dto=m.map(vS.lisId(id),VoucherDTO.class);
         return dto;
     }
+    @GetMapping("/totalamountofvouchersByservice")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<VoucherByServiceDTO> quantityBookByAuthor() {
+        List<VoucherByServiceDTO> mList = new ArrayList<>();
+        List<String[]> ListDTO = vS.quantityAmountVoucherService();
+        for (String[] vsItem : ListDTO){
+            VoucherByServiceDTO Temp = new VoucherByServiceDTO();
+            Temp.setNameService(vsItem[0]);
+            Temp.setTotalAmount(Float.parseFloat(vsItem[1]));
+            mList.add(Temp);
+        }
+        return mList;
+    }
+
 }

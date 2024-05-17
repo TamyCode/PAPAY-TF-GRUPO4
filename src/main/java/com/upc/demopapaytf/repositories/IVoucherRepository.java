@@ -9,9 +9,10 @@ import java.util.List;
 
 @Repository
 public interface IVoucherRepository extends JpaRepository<Voucher,Integer> {
-    @Query(value = "select s.name_service as servicio, sum (v.amount_voucher) as voucher \n" +
-            "from services s \n" +
-            "inner join voucher v on s.id_service=v.id_voucher \n" +
-            "group by s.name_service",nativeQuery = true)
-    public List<String[]> findByAmountVoucherService();
+    @Query(value = "SELECT s.name_service, SUM(v.amount_voucher) AS totalAmount\n" +
+            "FROM services s\n" +
+            "LEFT JOIN voucher v ON s.id_service = v.id_serviceb\n" +
+            "GROUP BY s.name_service",nativeQuery = true)
+    public List<String[]> quantityAmountVoucherService();
+
 }

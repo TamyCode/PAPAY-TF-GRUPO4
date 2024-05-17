@@ -3,7 +3,7 @@ package com.upc.demopapaytf.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "nameRole"})})
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
