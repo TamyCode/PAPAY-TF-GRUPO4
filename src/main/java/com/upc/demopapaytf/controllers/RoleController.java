@@ -5,12 +5,14 @@ import com.upc.demopapaytf.entities.Role;
 import com.upc.demopapaytf.servicesinterfaces.IRoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/roles")
 public class RoleController {
     @Autowired
@@ -37,7 +39,7 @@ public class RoleController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id")Integer id){rS.delete(id);}
 
-    @GetMapping("/listarid")
+    @GetMapping("/{id}")
     public RoleDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         RoleDTO dto=m.map(rS.lisId(id),RoleDTO.class);

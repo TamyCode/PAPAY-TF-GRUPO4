@@ -16,27 +16,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
 @RequestMapping("/servicios")
 public class ServiceController {
     @Autowired
     private IServiceService sS;
-    @PostMapping("/registrar")
+    @PostMapping
     @PreAuthorize("hasAuthority('PENSIONISTA')")
     public void registrar(@RequestBody ServiceDTO sd){
         ModelMapper m=new ModelMapper();
         Services s=m.map(sd, Services.class);
         sS.insert(s);
     }
-    @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody ServiceDTO sd){
         ModelMapper m=new ModelMapper();
         Services s=m.map(sd, Services.class);
         sS.insert(s);
     }
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ServiceDTO> list(){
         return sS.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -44,11 +43,11 @@ public class ServiceController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id")Integer id){sS.delete(id);}
 
-    @GetMapping("/listId")
-    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ServiceDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         ServiceDTO dto=m.map(sS.lisId(id),ServiceDTO.class);
@@ -63,7 +62,7 @@ public class ServiceController {
             return m.map(x,ServiceDTO.class);
         }).collect(Collectors.toList());
     }
-    @GetMapping("/cantidadDeServiciosporFecha")
+    @GetMapping("/cantidadDeServiciosporFecha")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<ServicebyDateServiceDTO> cantidadDeServiciosporFecha(){
         List<String[]> filaLista=sS.quantityServicebyDateService();
@@ -78,7 +77,7 @@ public class ServiceController {
         return dtoLista;
     }
 
-    @GetMapping("/cantidadDeServiciosporNombre")
+    @GetMapping("/cantidadDeServiciosporusuario")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<ServicebyNameDTO> cantidadDeServiciosporNombre(){
         List<String[]> filaLista=sS.quantityServicebyDateService();

@@ -5,7 +5,6 @@ import com.upc.demopapaytf.entities.Services;
 public class TypeServiceDTO {
     private int idTypeService;
     private String nameTypeService;
-    private Services service;
 
     public int getIdTypeService() {
         return idTypeService;
@@ -23,11 +22,4 @@ public class TypeServiceDTO {
         this.nameTypeService = nameTypeService;
     }
 
-    public Services getService() {
-        return service;
-    }
-
-    public void setService(Services service) {
-        this.service = service;
-    }
 }

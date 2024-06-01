@@ -14,13 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
 @RequestMapping("/entidades")
 public class BankingEntityController {
     @Autowired
     private IBankingEntityService bE;
     @PostMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar(@RequestBody BankingEntityDTO b){
         ModelMapper m=new ModelMapper();
         BankingEntity be=m.map(b,BankingEntity.class);
@@ -28,14 +27,14 @@ public class BankingEntityController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody BankingEntityDTO b){
         ModelMapper m=new ModelMapper();
         BankingEntity be=m.map(b,BankingEntity.class);
         bE.insert(be);
     }
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
     public List<BankingEntityDTO> list(){
         return bE.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -43,17 +42,20 @@ public class BankingEntityController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id")Integer id){bE.delete(id);}
 
-    @GetMapping("/listarid")
-    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority( 'ADMIN')")
     public BankingEntityDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         BankingEntityDTO dto=m.map(bE.lisId(id),BankingEntityDTO.class);
         return dto;
     }
-    @GetMapping("/cantidadUserbyBankingEntity")
+
+
+
+    @GetMapping("/cantidadUserbyBankingEntity")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<UserbyBankingEntityDTO> tipoCuentaBancaria(){
         List<String[]> filaLista=bE.quantityUserbyBankingEntity();

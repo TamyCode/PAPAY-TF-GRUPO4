@@ -1,5 +1,6 @@
 package com.upc.demopapaytf.servicesimplements;
 
+import com.upc.demopapaytf.entities.Role;
 import com.upc.demopapaytf.entities.Services;
 import com.upc.demopapaytf.repositories.IServiceRepository;
 import com.upc.demopapaytf.servicesinterfaces.IServiceService;
@@ -25,13 +26,13 @@ public class ServiceServiceImplement implements IServiceService {
 
     @Override
     public void delete(int id) {
-
+        {
+            sR.deleteById(id);
+        }
     }
 
     @Override
-    public Services lisId(int id) {
-        return null;
-    }
+    public Services lisId(int id){return sR.findById(id).orElse(new Services());}
 
     @Override
     public List<Services> findbynameandDescription(String name, String descrip) {

@@ -1,8 +1,19 @@
 package com.upc.demopapaytf.dtos;
 
+import com.upc.demopapaytf.entities.Users;
+
 public class RoleDTO {
     private int idRole;
     private String nameRole;
+    private Users user;
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
 
     public int getIdRole() {
         return idRole;

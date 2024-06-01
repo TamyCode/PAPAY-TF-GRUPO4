@@ -14,27 +14,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
-@RequestMapping("/Comprobantes")
+@RequestMapping("/comprobantes")
 public class VoucherController {
     @Autowired
     private IVoucherService vS;
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('PENSIONISTA')")
     public void registrar(@RequestBody VoucherDTO vdto){
         ModelMapper m=new ModelMapper();
         Voucher v=m.map(vdto,Voucher.class);
         vS.insert(v);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody VoucherDTO vdto){
         ModelMapper m=new ModelMapper();
         Voucher v=m.map(vdto,Voucher.class);
         vS.insert(v);
     }
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<VoucherDTO> list(){
         return vS.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -42,18 +40,21 @@ public class VoucherController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
     public void eliminar(@PathVariable("id")Integer id){vS.delete(id);}
-    @GetMapping("/listarid")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
+    @GetMapping("/{id}")
     public VoucherDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         VoucherDTO dto=m.map(vS.lisId(id),VoucherDTO.class);
         return dto;
     }
-    @GetMapping("/totalamountofvouchersByservice")
+
+
+
+
+
+    @GetMapping("/totalamountofvouchersByservice")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<VoucherByServiceDTO> quantityBookByAuthor() {
+    public List<VoucherByServiceDTO> quantityAmountVoucherService() {
         List<VoucherByServiceDTO> mList = new ArrayList<>();
         List<String[]> ListDTO = vS.quantityAmountVoucherService();
         for (String[] vsItem : ListDTO){

@@ -1,7 +1,9 @@
 package com.upc.demopapaytf.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -14,8 +16,8 @@ public class Users {
     private String nameUser;
     @Column(name = "lastnameUser",nullable = false,length = 35)
     private String lastnameUser;
-    @Column(name = "ageUser",nullable = false)
-    private int ageUser;
+    @Column(name = "dateBirth",nullable = false)
+    private LocalDate dateBirth;
     @Column(name = "cityUser",nullable = false,length = 30)
     private String cityUser;
     @Column(name = "cellphoneUser",nullable = false,length = 9)
@@ -26,6 +28,7 @@ public class Users {
     @Column(length = 200)
     private String password;
     private Boolean enabled;
+    @JsonIgnore //para ignorar otras tablas
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Role> roles;
@@ -33,11 +36,11 @@ public class Users {
     public Users() {
     }
 
-    public Users(int idUser, String nameUser, String lastnameUser, int ageUser, String cityUser, String cellphoneUser, String gmailUser, String password, Boolean enabled, List<Role> roles) {
+    public Users(int idUser, String nameUser, String lastnameUser, LocalDate dateBirth, String cityUser, String cellphoneUser, String gmailUser, String password, Boolean enabled, List<Role> roles) {
         this.idUser = idUser;
         this.nameUser = nameUser;
         this.lastnameUser = lastnameUser;
-        this.ageUser = ageUser;
+        this.dateBirth = dateBirth;
         this.cityUser = cityUser;
         this.cellphoneUser = cellphoneUser;
         this.gmailUser = gmailUser;
@@ -70,12 +73,12 @@ public class Users {
         this.lastnameUser = lastnameUser;
     }
 
-    public int getAgeUser() {
-        return ageUser;
+    public LocalDate getDateBirth() {
+        return dateBirth;
     }
 
-    public void setAgeUser(int ageUser) {
-        this.ageUser = ageUser;
+    public void setDateBirth(LocalDate dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
     public String getCityUser() {

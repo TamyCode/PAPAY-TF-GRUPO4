@@ -11,17 +11,13 @@ public class TypeService {
     @Column(name = "nameTypeService",nullable = false,length = 40)
     private String nameTypeService;
 
-    @ManyToOne
-    @JoinColumn(name = "idService")
-    private Services service;
-
     public TypeService() {
     }
 
-    public TypeService(int idTypeService, String nameTypeService, Services service) {
+    public TypeService(int idTypeService, String nameTypeService) {
         this.idTypeService = idTypeService;
         this.nameTypeService = nameTypeService;
-        this.service = service;
+
     }
 
     public int getIdTypeService() {
@@ -40,11 +36,4 @@ public class TypeService {
         this.nameTypeService = nameTypeService;
     }
 
-    public Services getService() {
-        return service;
-    }
-
-    public void setService(Services service) {
-        this.service = service;
-    }
 }

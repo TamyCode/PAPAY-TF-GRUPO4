@@ -24,16 +24,21 @@ public class Services {
     @JoinColumn(name = "idUser")
     private Users user;
 
+    @ManyToOne
+    @JoinColumn(name = "idTypeService")
+    private TypeService typeService;
+
     public Services() {
     }
 
-    public Services(int idService, String nameService, String descriptionService, LocalDate dateService, LocalDateTime timeService, Users user) {
+    public Services(int idService, String nameService, String descriptionService, LocalDate dateService, LocalDateTime timeService, Users user, TypeService typeService) {
         this.idService = idService;
         this.nameService = nameService;
         this.descriptionService = descriptionService;
         this.dateService = dateService;
         this.timeService = timeService;
         this.user = user;
+        this.typeService = typeService;
     }
 
     public int getIdService() {
@@ -82,5 +87,13 @@ public class Services {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public TypeService getTypeService() {
+        return typeService;
+    }
+
+    public void setTypeService(TypeService typeService) {
+        this.typeService = typeService;
     }
 }

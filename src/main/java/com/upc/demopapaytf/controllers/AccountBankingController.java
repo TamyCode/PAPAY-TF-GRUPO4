@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
 @RequestMapping("/cuentas")
 public class AccountBankingController {
     @Autowired
@@ -42,9 +41,9 @@ public class AccountBankingController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id")Integer id){aS.delete(id);}
-    @GetMapping("/listarid")
+    @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','PENSIONISTA')")
     public AccountBankingDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
@@ -52,7 +51,7 @@ public class AccountBankingController {
         return dto;
     }
 
-    @GetMapping("/cantidadusersciudad")
+    @GetMapping("/cantidadusersciudad")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<AccountBankingByTypeDTO> tipoCuentaBancaria(){
         List<String[]> filaLista=aS.quantyAccountBankingByType();

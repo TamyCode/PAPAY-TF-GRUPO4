@@ -15,27 +15,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
 @RequestMapping("/notificaciones")
 public class NotificationController {
     @Autowired
     private INotificationService nS;
     @PostMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void registrar(@RequestBody NotificationDTO nt){
         ModelMapper m=new ModelMapper();
         Notification ab=m.map(nt,Notification.class);
         nS.insert(ab);
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody NotificationDTO nt){
         ModelMapper m=new ModelMapper();
         Notification n=m.map(nt,Notification.class);
         nS.insert(n);
     }
     @GetMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
     public List<NotificationDTO> list(){
         return nS.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -44,10 +43,10 @@ public class NotificationController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
     public void eliminar(@PathVariable("id")Integer id){nS.delete(id);}
 
-    @GetMapping("/listid")
+    @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
     public NotificationDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
@@ -55,7 +54,9 @@ public class NotificationController {
         return dto;
     }
 
-    @GetMapping("/cantidadnotifidate")
+
+
+    @GetMapping("/cantidadnotifidate")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<NotificationByDateDTO> Cantidadnotificaciondate(){
         List<String[]> filaLista=nS.quantityNotificationByDateShip();

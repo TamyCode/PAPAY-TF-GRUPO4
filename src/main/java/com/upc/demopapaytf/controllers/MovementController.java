@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
 @RequestMapping("/movimientos")
 public class MovementController {
     @Autowired
@@ -28,33 +27,35 @@ public class MovementController {
         Movement ac=m.map(md,Movement.class);
         mS.insert(ac);
     }
+
+
     @PutMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
     public void modificar(@RequestBody MovementDTO md){
         ModelMapper m=new ModelMapper();
         Movement ac=m.map(md,Movement.class);
         mS.insert(ac);
     }
     @GetMapping
-    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @PreAuthorize("hasAnyAuthority('PENSIONISTA','ADMIN')")
     public List<MovementDTO> list(){
         return mS.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
             return m.map(y,MovementDTO.class);
         }).collect(Collectors.toList());
     }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id")Integer id){mS.delete(id);}
 
-    @GetMapping("/listarid")
-
+    @PreAuthorize("hasAuthority('PENSIONISTA')")
+    @GetMapping("/{id}")
     public MovementDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
         MovementDTO dto=m.map(mS.lisId(id),MovementDTO.class);
         return dto;
     }
 
-    @GetMapping("/sumaDineroInvertidoporNumeroCuenta")
+    @GetMapping("/sumaDineroInvertidoporNumeroCuenta")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<MoneyInvestbyAccountBankingDTO> sumaMoneyInvestedbyAccountBanking(){
         List<String[]> filaLista=mS.MoneyInvestedbyAccountBanking();
@@ -68,7 +69,7 @@ public class MovementController {
         return dtoLista;
     }
 
-    @GetMapping("/cantidadeMovimientoporFecha")
+    @GetMapping("/cantidadeMovimientoporFecha")//esta
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<MovementbyDateDTO> quantityMovementbyDateService(){
         List<String[]> filaLista=mS.quantityMovementbyDate();

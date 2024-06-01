@@ -2,20 +2,22 @@ package com.upc.demopapaytf.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "AccountBanking")
 public class AccountBanking {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numberAccountBanking;
+
     @Column(name = "typeAccountBanking",nullable = false,length = 40)
     private String typeAccountBanking;
     @Column(name = "amountAccountBanking",nullable = false,length = 40)
     private double amountAccountBanking;
     @Column(name = "dateOpening",nullable = false,length = 40)
-    private Date dateOpening;
+    private LocalDate dateOpening;
 
     @ManyToOne
     @JoinColumn(name = "idBankingEntity")
@@ -24,7 +26,7 @@ public class AccountBanking {
     public AccountBanking() {
     }
 
-    public AccountBanking(int numberAccountBanking, String typeAccountBanking, double amountAccountBanking, Date dateOpening, BankingEntity entityBank) {
+    public AccountBanking(int numberAccountBanking, String typeAccountBanking, double amountAccountBanking, LocalDate dateOpening, BankingEntity entityBank) {
         this.numberAccountBanking = numberAccountBanking;
         this.typeAccountBanking = typeAccountBanking;
         this.amountAccountBanking = amountAccountBanking;
@@ -56,11 +58,11 @@ public class AccountBanking {
         this.amountAccountBanking = amountAccountBanking;
     }
 
-    public Date getDateOpening() {
+    public LocalDate getDateOpening() {
         return dateOpening;
     }
 
-    public void setDateOpening(Date dateOpening) {
+    public void setDateOpening(LocalDate dateOpening) {
         this.dateOpening = dateOpening;
     }
 

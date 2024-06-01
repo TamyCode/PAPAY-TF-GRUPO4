@@ -2,15 +2,19 @@ package com.upc.demopapaytf.dtos;
 
 import com.upc.demopapaytf.entities.Role;
 
+import java.time.LocalDate;
+
 public class UsersDTO {
     private int idUser;
     private String nameUser;
-    private int ageUser;
+    private LocalDate dateBirth;
     private String lastnameUser;
     private String cityUser;
     private String cellphoneUser;
     private String gmailUser;
-    private Role role;
+    private String password;
+    private Boolean enabled;
+
 
     public int getIdUser() {
         return idUser;
@@ -28,12 +32,13 @@ public class UsersDTO {
         this.nameUser = nameUser;
     }
 
-    public int getAgeUser() {
-        return ageUser;
+
+    public LocalDate getDateBirth() {
+        return dateBirth;
     }
 
-    public void setAgeUser(int ageUser) {
-        this.ageUser = ageUser;
+    public void setDateBirth(LocalDate dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
     public String getLastnameUser() {
@@ -68,11 +73,19 @@ public class UsersDTO {
         this.gmailUser = gmailUser;
     }
 
-    public Role getRole() {
-        return role;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

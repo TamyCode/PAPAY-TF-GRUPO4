@@ -2,13 +2,14 @@ package com.upc.demopapaytf.dtos;
 
 import com.upc.demopapaytf.entities.BankingEntity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AccountBankingDTO {
     private int numberAccountBanking;
     private String typeAccountBanking;
     private double amountAccountBanking;
-    private Date dateOpening;
+    private LocalDate dateOpening;
     private BankingEntity entityBank;
 
     public int getNumberAccountBanking() {
@@ -35,11 +36,11 @@ public class AccountBankingDTO {
         this.amountAccountBanking = amountAccountBanking;
     }
 
-    public Date getDateOpening() {
+    public LocalDate getDateOpening() {
         return dateOpening;
     }
 
-    public void setDateOpening(Date dateOpening) {
+    public void setDateOpening(LocalDate dateOpening) {
         this.dateOpening = dateOpening;
     }
 

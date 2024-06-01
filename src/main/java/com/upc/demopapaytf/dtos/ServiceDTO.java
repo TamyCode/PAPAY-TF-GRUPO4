@@ -1,7 +1,7 @@
 package com.upc.demopapaytf.dtos;
 
+import com.upc.demopapaytf.entities.TypeService;
 import com.upc.demopapaytf.entities.Users;
-import com.upc.demopapaytf.entities.Voucher;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,7 +13,9 @@ public class ServiceDTO {
     private LocalDate dateService;
     private LocalDateTime timeService;
     private Users user;
-    private Voucher voucher;
+    private TypeService typeService;
+
+
 
     public int getIdService() {
         return idService;
@@ -63,11 +65,11 @@ public class ServiceDTO {
         this.user = user;
     }
 
-    public Voucher getVoucher() {
-        return voucher;
+    public TypeService getTypeService() {
+        return typeService;
     }
 
-    public void setVoucher(Voucher voucher) {
-        this.voucher = voucher;
+    public void setTypeService(TypeService typeService) {
+        this.typeService = typeService;
     }
 }
